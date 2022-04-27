@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 using System;
@@ -18,15 +19,14 @@ namespace TTWSApi
 {
     public class Startup
     {
-        public Startup(IHostEnvironment env, IConfiguration configuration)
+        //private readonly TTWSSettings _settings;
+        public Startup( IConfiguration configuration)//, TTWSSettings settings
         {
             Configuration = configuration;
-            CurrentEnvironment = env;
         }
 
         public IConfiguration Configuration { get; }
 
-        private IHostEnvironment CurrentEnvironment { get; set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -34,23 +34,18 @@ namespace TTWSApi
             
             services.AddControllers().AddXmlSerializerFormatters();
 
+            
+            var ttwsSettings = new TTWSSettings();
+            Configuration.GetSection("TTWSConfiguration").Bind(ttwsSettings);
+            services.AddSingleton(ttwsSettings);
+
+
             services.AddHttpClient<Symbol>((HttpClient client) =>
             {
 
-                if (CurrentEnvironment.IsStaging())
-                {
-                    client.BaseAddress = new Uri("http://ttwsrelaytest.ttweb.net/ttws-net/");
-                }
-                else if (CurrentEnvironment.IsProduction())
-                {
-                    client.BaseAddress = new Uri("http://ttwsxml.ttweb.net/ttws-net/");
+                //izmeniti
+                client.BaseAddress = new Uri(ttwsSettings.Server);
 
-                }
-                else if (CurrentEnvironment.IsDevelopment())
-                {
-                    client.BaseAddress = new Uri("http://bgttws10/ttws-net/");
-
-                }
 
                 client.DefaultRequestHeaders.Add(HeaderNames.UserAgent, "ExchangeRateViewer");
             });
@@ -64,11 +59,15 @@ namespace TTWSApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TTWSApi v1"));
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TTWSApi v1"));
+                //app.UseSwagger();
+                //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TTWSApi v1"));
             }
 
             app.UseHttpsRedirection();

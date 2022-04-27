@@ -18,9 +18,19 @@ namespace TTWSApi
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+            .ConfigureAppConfiguration(AddAppConfiguration)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        public static void AddAppConfiguration(HostBuilderContext hostingContext, IConfigurationBuilder config)
+        {
+            config.Sources.Clear();
+            var env = hostingContext.HostingEnvironment;
+            config.AddJsonFile("appsettings.json", optional: false)
+                .AddJsonFile($"appsettings{env.EnvironmentName}.json", optional:true);
+        }
+
     }
 }

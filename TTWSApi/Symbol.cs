@@ -1,4 +1,6 @@
-﻿using System.Net.Http;
+﻿using Microsoft.Extensions.Options;
+using System;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace TTWSApi
@@ -14,7 +16,8 @@ namespace TTWSApi
 
         public async Task<string> GetByIsin(string isin)
         {
-            var response = await _client.GetAsync("?action=getSymbolsByISIN&customerID=10&isin=" + isin); //izmeniti
+
+            var response = await _client.GetAsync($"?action=getSymbolsByISIN&customerID=10&isin={isin}"); 
             response.EnsureSuccessStatusCode();
 
             return await response.Content.ReadAsStringAsync();

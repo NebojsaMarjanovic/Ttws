@@ -26,3 +26,9 @@ C:\Users\nebojsa.marjanovic\source\repos\TTWSApi\TTWSApi\obj\Debug\net5.0\refint
 C:\Users\nebojsa.marjanovic\source\repos\TTWSApi\TTWSApi\obj\Debug\net5.0\TTWSApi.pdb
 C:\Users\nebojsa.marjanovic\source\repos\TTWSApi\TTWSApi\obj\Debug\net5.0\TTWSApi.genruntimeconfig.cache
 C:\Users\nebojsa.marjanovic\source\repos\TTWSApi\TTWSApi\obj\Debug\net5.0\ref\TTWSApi.dll
+C:\Users\nebojsa.marjanovic\source\repos\TTWSApi\TTWSApi\bin\Debug\net5.0\appsettingsProduction.Development.json
+C:\Users\nebojsa.marjanovic\source\repos\TTWSApi\TTWSApi\bin\Debug\net5.0\appsettingsProduction.json
+C:\Users\nebojsa.marjanovic\source\repos\TTWSApi\TTWSApi\bin\Debug\net5.0\appsettingsDevelopment.Development.json
+C:\Users\nebojsa.marjanovic\source\repos\TTWSApi\TTWSApi\bin\Debug\net5.0\appsettingsDevelopment.json
+C:\Users\nebojsa.marjanovic\source\repos\TTWSApi\TTWSApi\bin\Debug\net5.0\appsettingsStaging.Development.json
+C:\Users\nebojsa.marjanovic\source\repos\TTWSApi\TTWSApi\bin\Debug\net5.0\appsettingsStaging.json

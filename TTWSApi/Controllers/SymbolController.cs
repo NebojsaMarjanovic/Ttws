@@ -13,7 +13,10 @@ namespace TTWSApi.Controllers
         public SymbolController(Symbol symbol)
         {
             _symbol = symbol;
+
         }
+
+
 
         [HttpGet("{isin}")]
         public async Task<string> GetSymbolsByISIN(string isin)
