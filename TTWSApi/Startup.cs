@@ -43,6 +43,7 @@ namespace TTWSApi
             services.AddHttpClient<Symbol>((HttpClient client) =>
             {
 
+
                 //izmeniti
                 client.BaseAddress = new Uri(ttwsSettings.Server);
 

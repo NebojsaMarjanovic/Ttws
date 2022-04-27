@@ -2,7 +2,7 @@
 {
     public class TTWSSettings
     {
-        //public int CustomerId { get; set; }
+        public int CustomerId { get; set; }
         public string Server { get; set; }
     }
 }
