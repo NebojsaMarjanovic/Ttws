@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
+using Polly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,7 @@ namespace TTWSApi
 {
     public class Startup
     {
-        //private readonly TTWSSettings _settings;
-        public Startup( IConfiguration configuration)//, TTWSSettings settings
+        public Startup( IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -31,25 +31,23 @@ namespace TTWSApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
+            //xml serialization
             services.AddControllers().AddXmlSerializerFormatters();
 
             
+            //mapping config
             var ttwsSettings = new TTWSSettings();
             Configuration.GetSection("TTWSConfiguration").Bind(ttwsSettings);
             services.AddSingleton(ttwsSettings);
 
 
+            //third-party api
             services.AddHttpClient<Symbol>((HttpClient client) =>
             {
-
-
-                //izmeniti
                 client.BaseAddress = new Uri(ttwsSettings.Server);
-
-
-                client.DefaultRequestHeaders.Add(HeaderNames.UserAgent, "ExchangeRateViewer");
             });
+
 
             services.AddSwaggerGen(c =>
             {

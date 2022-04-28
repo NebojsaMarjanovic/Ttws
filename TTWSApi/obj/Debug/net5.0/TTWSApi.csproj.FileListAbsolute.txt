@@ -32,3 +32,6 @@ C:\Users\nebojsa.marjanovic\source\repos\TTWSApi\TTWSApi\bin\Debug\net5.0\appset
 C:\Users\nebojsa.marjanovic\source\repos\TTWSApi\TTWSApi\bin\Debug\net5.0\appsettingsDevelopment.json
 C:\Users\nebojsa.marjanovic\source\repos\TTWSApi\TTWSApi\bin\Debug\net5.0\appsettingsStaging.Development.json
 C:\Users\nebojsa.marjanovic\source\repos\TTWSApi\TTWSApi\bin\Debug\net5.0\appsettingsStaging.json
+C:\Users\nebojsa.marjanovic\source\repos\TTWSApi\TTWSApi\bin\Debug\net5.0\Microsoft.Extensions.Http.Polly.dll
+C:\Users\nebojsa.marjanovic\source\repos\TTWSApi\TTWSApi\bin\Debug\net5.0\Polly.dll
+C:\Users\nebojsa.marjanovic\source\repos\TTWSApi\TTWSApi\bin\Debug\net5.0\Polly.Extensions.Http.dll

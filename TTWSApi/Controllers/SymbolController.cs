@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace TTWSApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class SymbolController : ControllerBase
     {
@@ -15,9 +15,6 @@ namespace TTWSApi.Controllers
             _symbol = symbol;
 
         }
-
-
-
         [HttpGet("{isin}")]
         public async Task<string> GetSymbolsByISIN(string isin)
         {
